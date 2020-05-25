@@ -1,0 +1,1 @@
+/Users/rijeshp/.emacs.d/init.el

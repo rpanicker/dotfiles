@@ -1,0 +1,1 @@
+/Users/rijeshp/.config/nvim/init.vim

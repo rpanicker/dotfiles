@@ -7,6 +7,13 @@ set relativenumber
 " Using vim plug as plugin manager
 " Set Leader to ,
 let mapleader = ","
+set splitbelow
+set splitright
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
@@ -44,3 +51,4 @@ nnoremap <silent>  <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
 nnoremap <silent>  <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
 
 set completefunc=LanguageClient#complete
+set completeopt=menu,preview

@@ -2,6 +2,7 @@ set nocompatible
 colorscheme desert
 filetype plugin on
 filetype indent on
+set path+=**
 set number
 set relativenumber
 " Using vim plug as plugin manager
@@ -31,6 +32,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 	\}
 call plug#end()
 let g:airline#extensions#tabline#enabled = 1
+let g:fzf_layout = { 'right': '~40%' }
 set signcolumn=yes
 "Settings for LSP completion.
 set hidden "For operations that change multiple buffers like rename.
@@ -40,6 +42,8 @@ let g:LanguageClient_serverCommands = {
 	\'python': ['~/.local/bin/pyls'],
 	\'haskell': ['hie-wrapper', '--lsp']
 	\}
+let g:LanguageClient_preferredMarkupKind = ['plaintext','markdown']
+let g:LanguageClient_windowLogMessageLevel="Error" 
 "Mappings for completion
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent>  <Leader>lk :call LanguageClient#textDocument_hover()<CR>

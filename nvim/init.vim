@@ -63,6 +63,10 @@ nnoremap <leader>v :vimgrep
 nnoremap <leader>g :grep 
 "Settings for LSP completion.
 set hidden "For operations that change multiple buffers like rename.
+let g:LanguageClient_hoverPreview="Never"
+let g:LanguageClient_diagnosticsMaxSeverity="Hint"
+let g:LanguageClient_diagnosticsList="Location"
+let g:LanguageClient_useVirtualText="No"
 let g:LanguageClient_serverCommands = {
 	\ 'rust': ['~/.cargo/bin/rustup','run','stable','rls'],
 	\ 'ruby': ['~/.rbenv/shims/solargraph','stdio'],

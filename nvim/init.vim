@@ -8,10 +8,11 @@ set relativenumber
 " Using vim plug as plugin manager
 " Set Leader to ,
 let mapleader = ","
-" nnoremap <C-J> <C-W><C-J>
-" nnoremap <C-K> <C-W><C-K>
-" nnoremap <C-L> <C-W><C-L>
-" nnoremap <C-H> <C-W><C-H>
+" nnoremap <M-j> <C-W>j
+" nnoremap <M-k> <C-W>k
+" nnoremap <M-l> <C-W>l
+" nnoremap <M-h> <C-W>h
+
 set splitbelow
 set splitright
 set path+=**
@@ -23,6 +24,7 @@ endif
 
 call plug#begin('~/.config/nvim/plugins')
 " Plug 'jsfaint/gen_tags.vim'
+Plug 'majutsushi/tagbar'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
@@ -35,14 +37,25 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline-themes'
 " Plug 'jalvesaq/Nvim-R'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()}}
+Plug 'junegunn/fzf.vim'
 " Plug 'ndmitchell/ghcid', { 'rtp': 'plugins/nvim' }
 Plug 'autozimu/LanguageClient-neovim', { 
 	\ 'branch': 'next',
 	\ 'do': './install.sh'
 	\}
 call plug#end()
+
+" Features of the plugins that I have enabled.
+" Airline Mode and Themes
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+"FZF
 let g:fzf_layout = { 'right': '~30%' }
+let g:fzf_preview_window = 'right:40%'
+let g:fzf_buffers_jump = 1
+
+"Preview
 "Mappings for using vim-preview and quickfix buffer.
 autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
 autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
@@ -62,7 +75,12 @@ inoremap <m-d> <c-\><c-o>:PreviewScroll +1<cr>
 nnoremap <leader>f :find 
 nnoremap <leader>v :vimgrep 
 nnoremap <leader>g :grep 
-"Settings for LSP completion.
+
+"Tagbar
+nnoremap <F2> :TagbarToggle<cr>
+inoremap <F2> <c-\><c-n>:TagbarToggle<cr>
+
+"LSP completion.
 set hidden "For operations that change multiple buffers like rename.
 let g:LanguageClient_hoverPreview="Never"
 let g:LanguageClient_diagnosticsMaxSeverity="Hint"

@@ -8,10 +8,10 @@ set relativenumber
 " Using vim plug as plugin manager
 " Set Leader to ,
 let mapleader = ","
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-L> <C-W><C-L>
+" nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 set path+=**
@@ -27,6 +27,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
 " Plug 'tpope/vim-fireplace'
 Plug 'vim-airline/vim-airline'
 Plug 'skywind3000/vim-preview'

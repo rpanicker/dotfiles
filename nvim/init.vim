@@ -1,5 +1,5 @@
 set nocompatible
-colorscheme elflord
+colorscheme desert
 filetype plugin on
 filetype indent on
 set signcolumn=yes
@@ -50,6 +50,7 @@ call plug#end()
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline_theme = 'behelit'
 "FZF
 let g:fzf_layout = { 'right': '~30%' }
 let g:fzf_preview_window = 'right:40%'
@@ -74,7 +75,7 @@ inoremap <m-d> <c-\><c-o>:PreviewScroll +1<cr>
 "Map find command and vimgrep and grep commands to keys
 nnoremap <leader>f :find 
 nnoremap <leader>v :vimgrep 
-nnoremap <leader>g :grep 
+nnoremap <leader>g :grep!
 
 "Tagbar
 nnoremap <F2> :TagbarToggle<cr>

@@ -82,7 +82,7 @@ inoremap <F2> <c-\><c-n>:TagbarToggle<cr>
 
 "LSP completion.
 set hidden "For operations that change multiple buffers like rename.
-let g:LanguageClient_hoverPreview="Never"
+let g:LanguageClient_hoverPreview="Always"
 let g:LanguageClient_diagnosticsMaxSeverity="Hint"
 let g:LanguageClient_diagnosticsList="Location"
 let g:LanguageClient_useVirtualText="No"

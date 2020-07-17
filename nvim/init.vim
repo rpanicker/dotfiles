@@ -26,6 +26,7 @@ call plug#begin('~/.config/nvim/plugins')
 " Plug 'jsfaint/gen_tags.vim'
 Plug 'majutsushi/tagbar'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'

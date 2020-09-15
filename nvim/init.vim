@@ -53,7 +53,7 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline_theme = 'behelit'
 "FZF
-let g:fzf_layout = { 'right': '~30%' }
+let g:fzf_layout = { 'down': '~40%' }
 let g:fzf_preview_window = 'right:60%'
 let g:fzf_buffers_jump = 1
 

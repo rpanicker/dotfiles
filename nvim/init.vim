@@ -1,5 +1,4 @@
 set nocompatible
-colorscheme desert
 filetype plugin on
 filetype indent on
 set signcolumn=yes
@@ -35,6 +34,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'skywind3000/vim-preview'
 Plug 'altercation/vim-colors-solarized'
+Plug 'cocopon/iceberg.vim'
+Plug 'junegunn/seoul256.vim'
+Plug 'joshdick/onedark.vim'
+Plug 'rakr/vim-one'
 Plug 'vim-airline/vim-airline-themes'
 " Plug 'jalvesaq/Nvim-R'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()}}
@@ -45,7 +48,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 	\ 'do': './install.sh'
 	\}
 call plug#end()
-
+colorscheme onedark
 " Features of the plugins that I have enabled.
 " Airline Mode and Themes
 let g:airline#extensions#tabline#enabled = 1
@@ -53,7 +56,7 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline_theme = 'behelit'
 "FZF
-let g:fzf_layout = { 'right': '~30%' }
+" let g:fzf_layout = { 'right': '~30%' }
 let g:fzf_preview_window = 'right:60%'
 let g:fzf_buffers_jump = 1
 

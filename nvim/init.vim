@@ -1,5 +1,3 @@
-set nocompatible
-colorscheme desert
 filetype plugin on
 filetype indent on
 set signcolumn=yes
@@ -12,7 +10,14 @@ let mapleader = ","
 " nnoremap <M-k> <C-W>k
 " nnoremap <M-l> <C-W>l
 " nnoremap <M-h> <C-W>h
-
+" Changing the cursor shape in insert mode inside and outside tmux.
+if exists('$TMUX')
+	let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
+	let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
+else
+	let &t_SI = "e[5 q"
+	let &t_EI = "e[2 q"
+endif
 set splitbelow
 set splitright
 set path+=**
@@ -26,15 +31,18 @@ call plug#begin('~/.config/nvim/plugins')
 " Plug 'jsfaint/gen_tags.vim'
 Plug 'majutsushi/tagbar'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-obsession'
 " Plug 'tpope/vim-fireplace'
 Plug 'vim-airline/vim-airline'
 Plug 'skywind3000/vim-preview'
 Plug 'altercation/vim-colors-solarized'
+Plug 'cocopon/iceberg.vim'
+Plug 'joshdick/onedark.vim'
+Plug 'junegunn/seoul256.vim'
 Plug 'vim-airline/vim-airline-themes'
 " Plug 'jalvesaq/Nvim-R'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()}}
@@ -46,15 +54,16 @@ Plug 'autozimu/LanguageClient-neovim', {
 	\}
 call plug#end()
 
+colorscheme onedark
 " Features of the plugins that I have enabled.
 " Airline Mode and Themes
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-let g:airline_theme = 'behelit'
+let g:airline_theme = 'lucius'
 "FZF
-let g:fzf_layout = { 'down': '~40%' }
-let g:fzf_preview_window = 'right:60%'
+" let g:fzf_layout = { 'down': '~80%' }
+let g:fzf_preview_window = 'right:70%'
 let g:fzf_buffers_jump = 1
 
 "Preview
@@ -93,7 +102,8 @@ let g:LanguageClient_serverCommands = {
 	\ 'rust': ['~/.cargo/bin/rustup','run','stable','rls'],
 	\ 'ruby': ['~/.rbenv/shims/solargraph','stdio'],
 	\'python': ['~/.local/bin/pyls'],
-	\'haskell': ['hie-wrapper', '--lsp']
+	\'haskell': ['hie-wrapper', '--lsp'],
+	\'go': ['gopls']
 	\}
 let g:LanguageClient_preferredMarkupKind= ['plaintext', 'markdown']
 " Mappings for completion
@@ -102,7 +112,7 @@ nnoremap <silent>  <Leader>lk :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent>  <Leader>ld :call LanguageClient#textDocument_definition({'gotoCmd':'PreviewFile'})<CR>
 nnoremap <silent>  <Leader>lr :call LanguageClient#textDocument_rename()<CR>
 nnoremap <silent>  <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
-nnoremap <silent>  <Leader>lb :call LanguageClient#textDocument_references()<CR>
+nnoremap <silent>  <Leader>ln :call LanguageClient#textDocument_references()<CR>
 nnoremap <silent>  <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
 nnoremap <silent>  <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
 

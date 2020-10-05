@@ -47,13 +47,16 @@
   (setq ivy-count-format "(%d/%d) ")
   :bind
   (("C-x C-f" . counsel-find-file)
-  ("s-s" . swiper-isearch)
+  ("C-s" . swiper)
   ("M-x" . counsel-M-x)
   ("C-c r" . counsel-rg)
   ("C-c f" . counsel-fzf))
 )
 
-;; Abo-abos hydra package and realted configuration
+(use-package magit
+   :straight (:host github :repo "magit/magit"
+			:branch "master"))
+;; Abo-abos hydra package and related configuration
 (use-package hydra)
 
 (defhydra hydra-zoom (global-map "<f2>")
@@ -95,14 +98,6 @@
   (yas-global-mode 1))
 
 
-;; Sets up virtualenv for python. Maybe use conda instead, they should do the same things.
-(use-package pyvenv
-  :init
-  (setenv "WORKON_HOME" "/Users/rijeshp/miniconda3/envs")
-  :defer t
-  :config
-  (add-hook 'python-mode-hook 'pyvenv-mode))
-
 ;; lsp mode and lsp-ui mode.
 
 ;; lsp-mode and a few additional ones
@@ -110,7 +105,6 @@
   :init
   (setq lsp-keymap-prefix "s-l")
   :hook (
-         (python-mode . lsp-deferred)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands
   (lsp lsp-deferred))
@@ -120,75 +114,7 @@
   :commands lsp-ui-mode)
 
 (use-package lsp-ivy :defer t :commands lsp-ivy-workspace-symbol)
-(use-package lsp-treemacs :defer t :commands lsp-treemacs-errors-list)
  
-(use-package dap-mode
-  :defer t)
-
-;; company autocompletion
-(use-package company
-  :config
-;  (add-hook 'python-mode-hook 'company-mode) 
-  (global-company-mode 1))
-
-
-;; Settings for python coding.
-
-;; setting jupyter console as the interpreter
-(setq python-shell-interpreter "jupyter"
-      python-shell-interpreter-args "console --simple-prompt"
-      python-shell-interpreter-detect-failure-warning nil)
-
-(use-package ein
-  :defer t)
-
-(use-package blacken
-  :defer t
-  :config
-  (add-hook 'python-mode-hook 'blacken-mode))
-
-;;; JS and Node interactive modes
-
-;; install js2-mode, xref-js2 and indium and setup appropriate
-;; keybindings. All deferred to run later.
-
-(use-package js2-mode
-  :config
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-  (add-hook 'js2-mode-hook #'js2-imenu-extras-mode))
-
-(use-package xref-js2
-  :defer t
-  :after (js2-mode)
-  :config
-  (add-hook 'js2-mode-hook
-            (lambda ()
-              (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)))
-  :bind
-  (:map js-mode-map
-        ("M-." . nil)))
-
-;; js2-refactor and multi-cursor have been installedas dependencies, configure them separately using use-package.
-
-(use-package indium
-  :defer t
-  :config
-  (add-hook 'js2-mode-hook #'indium-interactive-mode))
-
-(use-package company-tern
-  :defer t
-  :config
-  (add-to-list 'company-backends 'company-tern)
-  (add-hook 'js2-mode-hook (lambda ()
-                              (tern-mode t)
-                             )))
-
-;; Emacs and slime
-
-(use-package slime
-  :init
-  (setq inferior-lisp-program "sbcl"))
-
 
 ;; SETTING CUSTOM FILE FOR custom configurations using menu.
 (setq custom-file "~/.emacs.d/custom.el")

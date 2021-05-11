@@ -3,6 +3,21 @@ filetype indent on
 set signcolumn=yes
 set number
 set relativenumber
+"Softtabs, tabwidth=4,shiftwidth=4
+set expandtab
+set tabstop=4
+set shiftwidth=4
+"Dont split words when softwrapping
+set linebreak
+
+" Set spell checker
+set nospell spelllang=en_us
+nnoremap <silent> <F6> :set invspell<cr>
+inoremap <silent> <F6> <C-O>:set invspell<cr>
+
+"Markdown fenced languages
+let g:markdown_fenced_languages = ['python', 'rust', 'lisp']
+
 " Using vim plug as plugin manager
 " Set Leader to ,
 let mapleader = ","

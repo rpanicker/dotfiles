@@ -15,8 +15,8 @@
 
 ;; Setting default font here, since custom setting does not save this info.
 (set-face-attribute 'default nil
-                    :family "Fira Code Retina"
-                    :height 140
+                    :family "Hack"
+                    :height 160
                     :weight 'normal
                     :width 'normal)
                     

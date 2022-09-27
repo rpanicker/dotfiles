@@ -56,13 +56,14 @@
 (use-package magit
    :straight (:host github :repo "magit/magit"
 			:branch "master"))
+
 ;; Abo-abos hydra package and related configuration
 (use-package hydra)
 
 (defhydra hydra-zoom (global-map "<f2>")
-  "Press _g_ to zoom in."
-  ("g" text-scale-increase "in")
-  ("l" text-scale-decrease "out"))
+  "Press _i_ to zoom in."
+  ("i" text-scale-increase "in")
+  ("o" text-scale-decrease "out"))
 
 (use-package counsel)
 
@@ -98,6 +99,10 @@
   (yas-global-mode 1))
 
 
+(use-package company
+  :init
+  (global-company-mode 1))
+
 ;; lsp mode and lsp-ui mode.
 
 ;; lsp-mode and a few additional ones
@@ -114,8 +119,14 @@
   :commands lsp-ui-mode)
 
 (use-package lsp-ivy :defer t :commands lsp-ivy-workspace-symbol)
- 
-
+(use-package sly)
+(setq inferior-lisp-program "ros -Q run")
+(use-package cider)
+(use-package parinfer
+  :hook (
+         (lisp-mode . parinfer-mode)))
+;;(load (expand-file-name "~/.roswell/helper.el"))
 ;; SETTING CUSTOM FILE FOR custom configurations using menu.
 (setq custom-file "~/.emacs.d/custom.el")
+
 (load custom-file)

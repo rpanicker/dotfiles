@@ -16,7 +16,7 @@
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 6))
+      (bootstrap-version 5))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
         (url-retrieve-synchronously
@@ -38,6 +38,21 @@
 ;; set higher gc threshold to see if it changes the responsiveness
 (setq gc-cons-threshold 1600000)
 
+(use-package swiper
+  :straight (:host github :repo "abo-abo/swiper"
+		   :branch "master")
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-count-format "(%d/%d) ")
+  :bind
+  (("C-x C-f" . counsel-find-file)
+  ("C-s" . swiper)
+  ("M-x" . counsel-M-x)
+  ("C-c r" . counsel-rg)
+  ("C-c f" . counsel-fzf))
+)
+
 (use-package magit
    :straight (:host github :repo "magit/magit"
 			:branch "master"))
@@ -50,26 +65,12 @@
   ("i" text-scale-increase "in")
   ("o" text-scale-decrease "out"))
 
-(use-package vertico
+(use-package counsel)
+
+(use-package exec-path-from-shell
   :config
-  (ido-mode 0)
-  (vertico-mode 1))
-
-(use-package consult)
-
-(use-package embark)
-
-(use-package marginalia
-  :init
-  (marginalia-mode 1))
-
-(use-package orderless)
-;;(use-package prescient)
-
-(use-package w3m)
-
-;; Needs keybinds
-(use-package multiple-cursors)
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize)))
 
 (use-package which-key
   :config
@@ -87,8 +88,7 @@
 (use-package flycheck
   :defer t
   :config
- ;; (add-hook 'python-mode-hook 'flycheck-mode)
-  (add-hook 'prog-mode-hook 'flycheck-mode))
+  (add-hook 'python-mode-hook 'flycheck-mode))
 
 ;; yassnippets and snippets library
 (use-package yasnippet-snippets
@@ -118,13 +118,13 @@
   :defer t
   :commands lsp-ui-mode)
 
+(use-package lsp-ivy :defer t :commands lsp-ivy-workspace-symbol)
 (use-package sly)
 (setq inferior-lisp-program "ros -Q run")
 (use-package cider)
 (use-package parinfer
   :hook (
          (lisp-mode . parinfer-mode)))
-
 ;;(load (expand-file-name "~/.roswell/helper.el"))
 ;; SETTING CUSTOM FILE FOR custom configurations using menu.
 (setq custom-file "~/.emacs.d/custom.el")

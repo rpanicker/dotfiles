@@ -1,5 +1,6 @@
 -- nvim config written in lua.
 --
+-- Load packer.nvim automatically
 local set = vim.opt
 -- basic hygenie settings
 set.number = true

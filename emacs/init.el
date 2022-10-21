@@ -146,6 +146,14 @@
             ("C-c n l" . org-roam-buffer-toggle))
            )))
 
+  (use-package org-roam-ui
+      :after org-roam
+      :config
+      (setq org-roam-ui-sync-theme t
+            org-roam-ui-follow t
+            org-roam-ui-update-on-save t
+            org-roam-ui-open-on-start t))
+
 (use-package sly)
 (setq inferior-lisp-program "ros -Q run")
 

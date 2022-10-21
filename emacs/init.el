@@ -52,8 +52,9 @@
 
 (use-package vertico
   :config
-  (ido-mode 0)
   (vertico-mode 1))
+
+(use-package deft)
 
 (use-package consult)
 
@@ -76,6 +77,7 @@
   (which-key-mode 1))
 
 (use-package better-defaults)
+(use-package god-mode)
 
 (use-package material-theme
   :straight (:host github :repo "cpaulik/emacs-material-theme")
@@ -118,8 +120,35 @@
   :defer t
   :commands lsp-ui-mode)
 
+(use-package org
+  :config
+  (setq org-directory (concat (getenv "HOME") "/Documents/OrgNotes/"))
+  :bind
+  (("C-c l" . org-store-link)
+   ("C-c a" . org-agenda)
+   ("C-c c" . org-capture)))
+
+  (use-package org-roam
+    :after org
+    :custom
+    (org-roam-directory (file-truename org-directory))
+    :config
+    (org-roam-setup)
+    :bind
+    (("C-c n f" . org-roam-node-find)
+     ("C-c n r" . org-roam-node-random)
+     (:map org-mode-map
+           (("C-c n i" . org-roam-node-insert)
+            ("C-c n o" . org-id-get-create)
+            ("C-c n t" . org-roam-tag-add)
+            ("C-c n d" . org-roam-tag-delete)
+            ("C-c n a" . org-roam-alias-add)
+            ("C-c n l" . org-roam-buffer-toggle))
+           )))
+
 (use-package sly)
 (setq inferior-lisp-program "ros -Q run")
+
 (use-package cider)
 (use-package parinfer
   :hook (
@@ -130,3 +159,4 @@
 (setq custom-file "~/.emacs.d/custom.el")
 
 (load custom-file)
+

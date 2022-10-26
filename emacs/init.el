@@ -130,9 +130,8 @@
 
   (use-package org-roam
     :after org
-    :custom
-    (org-roam-directory ((concat (getenv "HOME") "/Documents/ZettelNotes/"))
     :config
+    (setq org-roam-directory ((concat (getenv "HOME") "/Documents/ZettelNotes/")))
     (org-roam-setup)
     :bind
     (("C-c n f" . org-roam-node-find)
@@ -155,6 +154,7 @@
             org-roam-ui-open-on-start t))
 
 (use-package sly)
+
 (setq inferior-lisp-program "ros -Q run")
 
 (use-package cider)
@@ -165,6 +165,5 @@
 ;;(load (expand-file-name "~/.roswell/helper.el"))
 ;; SETTING CUSTOM FILE FOR custom configurations using menu.
 (setq custom-file "~/.emacs.d/custom.el")
-
 (load custom-file)
 

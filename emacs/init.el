@@ -131,7 +131,7 @@
   (use-package org-roam
     :after org
     :custom
-    (org-roam-directory (file-truename org-directory))
+    (org-roam-directory ((concat (getenv "HOME") "/Documents/ZettelNotes/"))
     :config
     (org-roam-setup)
     :bind

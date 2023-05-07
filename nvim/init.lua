@@ -16,9 +16,11 @@ set.splitbelow = true
 set.splitright = true
 
 -- Set mapleader to \ and maplocalleader to ,
-vim.g.mapleader = " "
+vim.g.mapleader = "space"
 vim.g.maplocalleader = ","
 -- source conf/plugins.lua here
+require('conf/keymaps')
 require('conf/plugins')
+require('conf/lsp')
 -- Settings that need to happen post plugin load.
 vim.cmd[[colorscheme onedark]]

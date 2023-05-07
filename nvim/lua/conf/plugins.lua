@@ -19,12 +19,6 @@ return require('packer').startup(function(use)
   -- All the tpope goodness above in one section.
 
   use 'neovim/nvim-lspconfig'
- -- use {
- --   'w0rp/ale',
- --   ft = {'sh', 'bash', 'markdown', 'racket', 'vim' },
- --   cmd = 'ALEEnable',
- --   config = 'vim.cmd[[ALEEnable]]'
- -- }
 
  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' } --Fails on first install but updates will work
  use 'Olical/conjure' -- Clojure editing support. 

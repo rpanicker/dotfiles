@@ -76,7 +76,7 @@
   :config
   (which-key-mode 1))
 
-(use-package better-defaults)
+;;(use-package better-defaults)
 (use-package god-mode)
 
 (use-package material-theme
@@ -131,7 +131,7 @@
   (use-package org-roam
     :after org
     :config
-    (setq org-roam-directory ((concat (getenv "HOME") "/Documents/ZettelNotes/")))
+    (setq org-roam-directory (concat (getenv "HOME") "/Documents/ZettelNotes/"))
     (org-roam-setup)
     :bind
     (("C-c n f" . org-roam-node-find)
